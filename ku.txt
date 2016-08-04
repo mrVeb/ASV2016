@@ -1,0 +1,51 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
+public class MainClass {
+    public static void main(String[] args) {
+        //'оборачиваем' потоки
+     //   try {
+     //       FileOutputStream text2;
+     //       try (FileOutputStream text1 = new FileOutputStream("1.txt")) {
+     //           text1.write(new String("1 Hello world! The first text document.").getBytes());    //запись в буфер
+     //           text1.flush(); //из буфера запись в файл
+     //           text1.close();
+     //       }
+     //       text2 = new FileOutputStream("2.txt");
+     //       text2.write(new String("2 Hello world! The second text file.").getBytes());   //запись в буфер
+     //       text2.flush(); //из буфера запись в файл
+     //       text2.close();
+        try {
+            FileInputStream text2=new FileInputStream ("2.txt");
+
+            FileOutputStream text1=new FileOutputStream("1.txt");
+            int i=-1;
+
+            do {
+                i=text2.read();
+
+                if(i!=-1)
+                    text1.write(i+1);
+            } while (i!=-1);
+            text2.close();  //закрытие потока
+
+            text1.close(); //закрытие потока
+
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+
+  //  } catch (FileNotFoundException e) {
+      //      e.printStackTrace();
+      //  } catch (IOException e) {
+      //     e.printStackTrace();
+      // }
+
+    }
+}
